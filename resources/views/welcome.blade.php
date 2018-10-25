@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Duong Nguyen Phu cuong
+                   sssssssssssssssssssssssssssssss
                 </div>
 
                 <div class="links">
