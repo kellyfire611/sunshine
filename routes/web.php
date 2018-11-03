@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Loai;
+Route::get('/danhsachloai', function() {
+    // Eloquent Model de lay du lieu
+    //$ds_loai = Loai::all(); // SELECT * FROM cusc_loai
+    
+    // Query Builder
+    $ds_loai = DB::table('cusc_loai')->get();
+
+    $json    = json_encode($ds_loai);
+    return $json;
+});
