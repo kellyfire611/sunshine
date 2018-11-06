@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
 use App\Loai;
 Route::get('/danhsachloai', function() {
     // Eloquent Model de lay du lieu
@@ -26,3 +27,7 @@ Route::get('/danhsachloai', function() {
     $json    = json_encode($ds_loai);
     return $json;
 });
+*/
+
+// tencontroller@action
+Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');

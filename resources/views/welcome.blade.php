@@ -79,8 +79,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                   sssssssssssssssssssssssssssssss
+                   Shop hoa tuoi
                 </div>
+
+                <a href="{{ route('danhsachloai.index') }}">Danh sach Loai hoa</a>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
