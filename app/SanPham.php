@@ -21,5 +21,5 @@ class SanPham extends Model
     public function loai()
     {
         return $this->belongsTo('App\Loai', 'l_ma', 'l_ma');
-    } 
+    }
 }
