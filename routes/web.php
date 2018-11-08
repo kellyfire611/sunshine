@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 /*
 use App\Loai;
@@ -31,3 +31,4 @@ Route::get('/danhsachloai', function() {
 
 // tencontroller@action
 Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
+Route::get('/admin/danhsachsanpham', 'SanphamController@index')->name('danhsachsanpham.index');
