@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Loai;
 use DB;
+use Session;
 
 class LoaiController extends Controller
 {
@@ -18,5 +19,60 @@ class LoaiController extends Controller
         
         return view('loai.index')
             ->with('danhsachloai', $ds_loai);
+    }
+
+    public function create() {
+
+    }
+
+    public function store() {
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $loai = Loai::where("l_ma", $id)->first();
+        return view('loai.edit')->with('loai', $loai);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $loai = Loai::where("l_ma", $id)->first();
+        $loai->l_ten = $request->l_ten;
+        $loai->l_taoMoi = $request->l_taoMoi;
+        $loai->l_capNhat = $request->l_capNhat;
+        $loai->l_trangThai = $request->l_trangThai;
+        $loai->save();
+
+        Session::flash('alert-info', 'Cap nhat thanh cong ^^~!!!');
+        return redirect()->route('danhsachloai.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $loai = Loai::where("l_ma",  $id)->first();
+        $loai->delete();
+
+        Session::flash('alert-danger', 'Xoa du lieu thanh cong ^^~!!!');
+        return redirect()->route('danhsachloai.index');
     }
 }

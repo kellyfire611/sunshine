@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::resource('test', 'TestController');
+
 /*
 use App\Loai;
 Route::get('/danhsachloai', function() {
@@ -32,3 +34,7 @@ Route::get('/danhsachloai', function() {
 // tencontroller@action
 Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
 Route::get('/admin/danhsachsanpham', 'SanphamController@index')->name('danhsachsanpham.index');
+
+Route::get('/admin/danhsachloai/{id}', 'LoaiController@edit')->name('danhsachloai.edit');
+Route::put('/admin/danhsachloai/{id}', 'LoaiController@update')->name('danhsachloai.update');
+Route::delete('/admin/danhsachloai/{id}', 'LoaiController@destroy')->name('danhsachloai.destroy');
