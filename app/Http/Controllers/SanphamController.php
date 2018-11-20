@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SanPham;
+use App\Loai;
 
 class SanphamController extends Controller
 {
@@ -29,7 +30,10 @@ class SanphamController extends Controller
      */
     public function create()
     {
-        //
+        $ds_loai = Loai::all();
+
+        return view('sanpham.create')
+            ->with('danhsachloai', $ds_loai);
     }
 
     /**
@@ -40,7 +44,16 @@ class SanphamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sp = new SanPham();
+        $sp->sp_ten = $sp_ten;
+
+        if($request->hasFile('sp_hinh'))
+        {
+            $file = $request->sp_hinh;
+
+            $sp->sp_hinh = $file->getClientOriginNames();
+            $file->storeAs('photos', $sp->sp_hinh); 
+        }
     }
 
     /**

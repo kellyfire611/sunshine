@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoaiRequest;
 use App\Loai;
 use DB;
 use Session;
+use Validator;
 
 class LoaiController extends Controller
 {
@@ -48,8 +50,21 @@ class LoaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LoaiRequest $request, $id)
     {
+        // $validator = Validator::make($request->all(), [
+        //     'l_ten' => 'required|unique:cusc_loai|max:60',
+        //     'l_taoMoi' => 'required',
+        //     'l_capNhat' => 'required',
+        //     'l_trangThai' => 'required',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return redirect(route('danhsachloai.edit', ['id' => $id]))
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
+
         $loai = Loai::where("l_ma", $id)->first();
         $loai->l_ten = $request->l_ten;
         $loai->l_taoMoi = $request->l_taoMoi;
