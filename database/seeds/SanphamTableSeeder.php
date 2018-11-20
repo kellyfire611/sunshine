@@ -13,11 +13,10 @@ class SanphamTableSeeder extends Seeder {
      */
     public function run() {
         $list = [];
-        $faker = Faker\Factory::create('vi_VN'); //zone
-        $uFN = $faker->text(20);
-        $uPI = $faker->text(20);
+        $uFN = new VnFullname();
+        $uPI = new VnPersonalInfo();
 
-        for ($i=1; $i <= 5; $i++) {
+        for ($i=1; $i <= 30; $i++) {
             $today = new DateTime();
             array_push($list, [
                 'sp_ten'                  => "sp_ten $i",

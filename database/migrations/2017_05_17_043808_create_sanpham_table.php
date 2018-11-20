@@ -11,9 +11,9 @@ class CreateSanphamTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_sanpham', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'MyISAM';
             $table->bigIncrements('sp_ma')->comment('Mã sản phẩm');
-            $table->string('sp_ten', 100)->comment('Tên sản phẩm # Tên sản phẩm');
+            $table->string('sp_ten', 200)->comment('Tên sản phẩm # Tên sản phẩm');
             $table->unsignedInteger('sp_giaGoc')->default('0')->comment('Giá gốc # Giá gốc của sản phẩm');
             $table->unsignedInteger('sp_giaBan')->default('0')->comment('Giá bán # Giá bán hiện tại của sản phẩm');
             $table->string('sp_hinh', 200)->comment('Hình đại diện # Hình đại diện của sản phẩm');

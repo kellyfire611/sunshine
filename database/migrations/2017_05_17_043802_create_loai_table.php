@@ -11,7 +11,7 @@ class CreateLoaiTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_loai', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'MyISAM';
             $table->unsignedTinyInteger('l_ma')->autoIncrement()->comment('Mã loại sản phẩm');
             $table->string('l_ten', 50)->comment('Tên loại # Tên loại sản phẩm');
             $table->timestamp('l_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo loại sản phẩm');
