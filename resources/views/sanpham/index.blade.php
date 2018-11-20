@@ -20,7 +20,7 @@ Danh sach san pham
                 <td>{{ $sp->sp_ma }}</td>
                 <td>{{ $sp->sp_ten }}</td>
                 <td>{{ storage_path($sp->sp_hinh) }}</td>
-                <td>{{ $sp->loaisanpham->l_ten }}</td>
+                <td>{{ $sp->sp_ten }}</td>
             </tr>
         @endforeach
     </tbody>

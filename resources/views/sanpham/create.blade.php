@@ -27,5 +27,7 @@ Them moi san pham
         <label for="sp_hinh">Hình đại diện</label>
         <input type="file" name="sp_hinh" />
     </div>
+
+    <button type="submit" class="btn btn-primary">Luu</button>
 </form>
 @endsection

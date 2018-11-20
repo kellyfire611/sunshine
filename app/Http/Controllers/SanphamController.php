@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SanPham;
 use App\Loai;
+use Session;
 
 class SanphamController extends Controller
 {
@@ -45,15 +46,22 @@ class SanphamController extends Controller
     public function store(Request $request)
     {
         $sp = new SanPham();
-        $sp->sp_ten = $sp_ten;
+        $sp->sp_ten = $request->sp_ten;
 
         if($request->hasFile('sp_hinh'))
         {
             $file = $request->sp_hinh;
+            // Lưu tên hình vào column sp_hinh
+            $sp->sp_hinh = $file->getClientOriginalName();
 
-            $sp->sp_hinh = $file->getClientOriginNames();
-            $file->storeAs('photos', $sp->sp_hinh); 
+            // Chép file vào thư mục "photos"
+            $file->store('photos');
         }
+
+        $sp->save();
+
+        Session::flash('alert-info', 'Them moi thanh cong ^^~!!!');
+        return redirect()->route('danhsachsanpham.index');
     }
 
     /**
