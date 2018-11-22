@@ -98,11 +98,12 @@ Hiệu chỉnh sản phẩm
             fileType: "any",
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             overwriteInitial: false,
+            initialPreviewAsData: true,
             initialPreview: [
                 "{{ asset('storage/photos/' . $sp->sp_hinh) }}"
             ],
             initialPreviewConfig: [
-                {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
+                {caption: "{{ $sp->sp_hinh }}", size: {{ Storage::size('public/photos/' . $sp->sp_hinh) }}, width: "120px", url: "{$url}", key: 1},
             ]
         });
     });

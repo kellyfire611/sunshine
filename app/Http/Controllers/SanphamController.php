@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\SanPham;
 use App\Loai;
 use Session;
+use Storage;
 
 class SanphamController extends Controller
 {
@@ -112,7 +113,7 @@ class SanphamController extends Controller
         if($request->hasFile('sp_hinh'))
         {
             // Xóa hình cũ để tránh rác
-            Storage::delete($sp->sp_hinh);
+            Storage::delete('public/photos/' . $sp->sp_hinh);
 
             // Upload hình mới
             // Lưu tên hình vào column sp_hinh
