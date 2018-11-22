@@ -47,9 +47,9 @@ class SanphamController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'photo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
-            // for multiple file uploads
-            // 'photo.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+            'sp_hinh' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+            // Cú pháp dùng upload nhiều file
+            // 'sp_hinh.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
         
         $sp = new SanPham();
@@ -147,3 +147,7 @@ class SanphamController extends Controller
         //
     }
 }
+
+/*
+
+*/
