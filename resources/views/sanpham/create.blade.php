@@ -92,7 +92,8 @@ Thêm mới sản phẩm
             browseClass: "btn btn-primary btn-lg",
             fileType: "any",
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-            overwriteInitial: false
+            overwriteInitial: false,
+            allowedFileExtensions: ["jpg", "gif", "png", "txt"]
         });
     });
 </script>

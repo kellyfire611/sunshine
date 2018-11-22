@@ -46,6 +46,12 @@ class SanphamController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = $request->validate([
+            'photo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+            // for multiple file uploads
+            // 'photo.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+        ]);
+        
         $sp = new SanPham();
         $sp->sp_ten = $request->sp_ten;
         $sp->sp_giaGoc = $request->sp_giaGoc;
