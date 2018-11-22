@@ -1,7 +1,7 @@
 @extends('backend.layouts.index')
 
 @section('title')
-Thêm mới sản phẩm
+Hiệu chỉnh sản phẩm
 @endsection
 
 @section('custom-css')
@@ -22,27 +22,32 @@ Thêm mới sản phẩm
     </div>
 @endif
 
-<form method="post" action="{{ route('danhsachsanpham.store') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('danhsachsanpham.update', ['id' => $sp->sp_ma]) }}" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="PUT" />
     {{ csrf_field() }}
     <div class="form-group">
         <label for="l_ma">Loại sản phẩm</label>
         <select name="l_ma">
             @foreach($danhsachloai as $loai)
-            <option value="{{ $loai->l_ma }}">{{ $loai->l_ten }}</option>
+                @if($loai->l_ma == $sp->l_ma)
+                <option value="{{ $loai->l_ma }}" selected>{{ $loai->l_ten }}</option>
+                @else
+                <option value="{{ $loai->l_ma }}">{{ $loai->l_ten }}</option>
+                @endif
             @endforeach
         </select>
     </div>
     <div class="form-group">
         <label for="sp_ten">Tên sản phẩm</label>
-        <input type="text" class="form-control" id="sp_ten" name="sp_ten">
+        <input type="text" class="form-control" id="sp_ten" name="sp_ten" value="{{ $sp->sp_ten }}">
     </div>
     <div class="form-group">
         <label for="sp_giaGoc">Giá gốc</label>
-        <input type="text" class="form-control" id="sp_giaGoc" name="sp_giaGoc">
+        <input type="text" class="form-control" id="sp_giaGoc" name="sp_giaGoc" value="{{ $sp->sp_giaGoc }}">
     </div>
     <div class="form-group">
         <label for="sp_giaGoc">Giá bán</label>
-        <input type="text" class="form-control" id="sp_giaBan" name="sp_giaBan">
+        <input type="text" class="form-control" id="sp_giaBan" name="sp_giaBan" value="{{ $sp->sp_giaBan }}">
     </div>
     <div class="form-group">
         <div class="file-loading">
@@ -52,23 +57,23 @@ Thêm mới sản phẩm
     </div>
     <div class="form-group">
         <label for="sp_thongTin">Thông tin</label>
-        <input type="text" class="form-control" id="sp_thongTin" name="sp_thongTin">
+        <input type="text" class="form-control" id="sp_thongTin" name="sp_thongTin" value="{{ $sp->sp_thongTin }}">
     </div>
     <div class="form-group">
         <label for="sp_danhGia">Đánh giá</label>
-        <input type="text" class="form-control" id="sp_danhGia" name="sp_danhGia">
+        <input type="text" class="form-control" id="sp_danhGia" name="sp_danhGia" value="{{ $sp->sp_danhGia }}">
     </div>
     <div class="form-group">
         <label for="sp_taoMoi">Ngày tạo mới</label>
-        <input type="text" class="form-control" id="sp_taoMoi" name="sp_taoMoi">
+        <input type="text" class="form-control" id="sp_taoMoi" name="sp_taoMoi" value="{{ $sp->sp_taoMoi }}">
     </div>
     <div class="form-group">
         <label for="sp_capNhat">Ngày cập nhật</label>
-        <input type="text" class="form-control" id="sp_capNhat" name="sp_capNhat">
+        <input type="text" class="form-control" id="sp_capNhat" name="sp_capNhat" value="{{ $sp->sp_capNhat }}">
     </div>
     <select name="sp_trangThai">
-        <option value="1">Khóa</option>
-        <option value="2">Khả dụng</option>
+        <option value="1" {{ $sp->sp_trangThai == 1 ? "selected" : "" }}>Khoa</option>
+        <option value="2" {{ $sp->sp_trangThai == 2 ? "selected" : "" }}>Kha dung</option>
     </select>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
@@ -79,7 +84,7 @@ Thêm mới sản phẩm
 <!-- Các script dành cho thư viện bootstrap-fileinput -->
 <script src="{{ asset('vendor/bootstrap-fileinput/js/plugins/sortable.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/bootstrap-fileinput/js/fileinput.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendor/bootstrap-fileinput/js/locales/vi.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/bootstrap-fileinput/js/locales/fr.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
 
@@ -92,7 +97,13 @@ Thêm mới sản phẩm
             browseClass: "btn btn-primary btn-lg",
             fileType: "any",
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-            overwriteInitial: false
+            overwriteInitial: false,
+            initialPreview: [
+                "{{ asset('storage/photos/' . $sp->sp_hinh) }}"
+            ],
+            initialPreviewConfig: [
+                {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
+            ]
         });
     });
 </script>

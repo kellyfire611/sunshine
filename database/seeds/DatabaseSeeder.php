@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(NhacungcapTableSeeder::class);
         $this->call(NhanvienTableSeeder::class);
         $this->call(SanphamTableSeeder::class);
-        $this->call(HinhanhTableSeeder::class);
+        //$this->call(HinhanhTableSeeder::class);
         $this->call(KhuyenmaiTableSeeder::class);
         $this->call(GopyTableSeeder::class);
         $this->call(MauSanphamTableSeeder::class);

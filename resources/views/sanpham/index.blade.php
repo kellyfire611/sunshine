@@ -5,13 +5,25 @@ Danh sach san pham
 @endsection
 
 @section('main-content')
-<table border="1">
+<div class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+      @if(Session::has('alert-' . $msg))
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
+</div>
+
+<a href="{{ route('danhsachsanpham.create') }}" class="btn btn-primary">Thêm mới sản phẩm</a>
+
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th>Ma</th>
-            <th>Ten</th>
-            <th>Hinh anh</th>
-            <th>Thuoc loai</th>
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Hình ảnh</th>
+            <th>Thuộc loại</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +31,10 @@ Danh sach san pham
             <tr>
                 <td>{{ $sp->sp_ma }}</td>
                 <td>{{ $sp->sp_ten }}</td>
-                <td>{{ storage_path($sp->sp_hinh) }}</td>
-                <td>{{ $sp->sp_ten }}</td>
+                <td><img src="{{ asset('storage/photos/' . $sp->sp_hinh) }}" class="img-list" /></td>
+                <td>{{ $sp->loaisanpham->l_ten }}</td>
+                <td><a href="{{ route('danhsachsanpham.edit', ['id' => $sp->sp_ma]) }}">Sửa</a></td>
+                <td></td>
             </tr>
         @endforeach
     </tbody>
