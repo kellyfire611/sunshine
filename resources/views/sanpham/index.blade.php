@@ -22,8 +22,7 @@ Danh sach san pham
             <th>Tên</th>
             <th>Hình ảnh</th>
             <th>Thuộc loại</th>
-            <th>Sửa</th>
-            <th>Xóa</th>
+            <th>Sửa-Xóa</th>
         </tr>
     </thead>
     <tbody>
@@ -33,8 +32,14 @@ Danh sach san pham
                 <td>{{ $sp->sp_ten }}</td>
                 <td><img src="{{ asset('storage/photos/' . $sp->sp_hinh) }}" class="img-list" /></td>
                 <td>{{ $sp->loaisanpham->l_ten }}</td>
-                <td><a href="{{ route('danhsachsanpham.edit', ['id' => $sp->sp_ma]) }}">Sửa</a></td>
-                <td></td>
+                <td>
+                    <a href="{{ route('danhsachsanpham.edit', ['id' => $sp->sp_ma]) }}" class="btn btn-primary pull-left">Sửa</a>
+                    <form method="post" action="{{ route('danhsachsanpham.destroy', ['id' => $sp->sp_ma]) }}" class="pull-left">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-danger">Xoa</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </tbody>

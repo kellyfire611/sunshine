@@ -8,6 +8,7 @@ use App\SanPham;
 use App\Loai;
 use Session;
 use Storage;
+use DB;
 
 class SanphamController extends Controller
 {
@@ -47,37 +48,66 @@ class SanphamController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'sp_hinh' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+            'sp_hinh' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048',
             // Cú pháp dùng upload nhiều file
-            // 'sp_hinh.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+            'sp_hinhanhlienquan.*' => 'file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
         
-        $sp = new SanPham();
-        $sp->sp_ten = $request->sp_ten;
-        $sp->sp_giaGoc = $request->sp_giaGoc;
-        $sp->sp_giaBan = $request->sp_giaBan;
-        $sp->sp_thongTin = $request->sp_thongTin;
-        $sp->sp_danhGia = $request->sp_danhGia;
-        $sp->sp_taoMoi = $request->sp_taoMoi;
-        $sp->sp_capNhat = $request->sp_capNhat;
-        $sp->sp_trangThai = $request->sp_trangThai;
-        $sp->l_ma = $request->l_ma;
+        //dd($request);
 
-        if($request->hasFile('sp_hinh'))
-        {
-            $file = $request->sp_hinh;
-
-            // Lưu tên hình vào column sp_hinh
-            $sp->sp_hinh = $file->getClientOriginalName();
+        try {
+            DB::beginTransaction();
             
-            // Chép file vào thư mục "photos"
-            $fileSaved = $file->storeAs('public/photos', $sp->sp_hinh);
+            $sp = new SanPham();
+            $sp->sp_ten = $request->sp_ten;
+            $sp->sp_giaGoc = $request->sp_giaGoc;
+            $sp->sp_giaBan = $request->sp_giaBan;
+            $sp->sp_thongTin = $request->sp_thongTin;
+            $sp->sp_danhGia = $request->sp_danhGia;
+            $sp->sp_taoMoi = $request->sp_taoMoi;
+            $sp->sp_capNhat = $request->sp_capNhat;
+            $sp->sp_trangThai = $request->sp_trangThai;
+            $sp->l_ma = $request->l_ma;
+
+            if($request->hasFile('sp_hinh'))
+            {
+                $file = $request->sp_hinh;
+
+                // Lưu tên hình vào column sp_hinh
+                $sp->sp_hinh = $file->getClientOriginalName();
+                
+                // Chép file vào thư mục "photos"
+                $fileSaved = $file->storeAs('public/photos', $sp->sp_hinh);
+            }
+            $sp->save();
+
+            // Lưu hình ảnh liên quan
+            if($request->hasFile('sp_hinhanhlienquan')) {
+                $files = $request->sp_hinhanhlienquan;
+                dd($files);
+
+                // duyệt từng ảnh và thực hiện lưu
+                foreach ($request->sp_hinhanhlienquan as $index => $photo) {
+                    $filename = $photo->store('public/photos');
+                    
+                    // Tạo đối tưọng HinhAnh
+                    $hinhAnh = new HinhAnh();
+                    $hinhAnh->sp_ma = $sp->sp_ma;
+                    $hinhAnh->ha_stt = $index;
+                    $hinhAnh->ha_ten = $filename;
+                    $hinhAnh->save();
+                }
+            }
+            DB::commit();
+
+            Session::flash('alert-info', 'Them moi thanh cong ^^~!!!');
+            return redirect()->route('danhsachsanpham.index');
+        } catch(\Exception $e) {
+            DB::rollback();
+
+            Session::flash('alert-info', 'Them moi thanh cong ^^~!!!');
+            return redirect()->route('danhsachsanpham.index');
         }
-
-        $sp->save();
-
-        Session::flash('alert-info', 'Them moi thanh cong ^^~!!!');
-        return redirect()->route('danhsachsanpham.index');
     }
 
     /**
@@ -144,10 +174,16 @@ class SanphamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sp = SanPham::where("sp_ma",  $id)->first();
+        if(empty($sp) == false)
+        {
+            // Xóa hình cũ để tránh rác
+            Storage::delete('public/photos/' . $sp->sp_hinh);
+        }
+
+        $sp->delete();
+
+        Session::flash('alert-info', 'Xóa sản phẩm thành công ^^~!!!');
+        return redirect()->route('danhsachsanpham.index');
     }
 }
-
-/*
-
-*/

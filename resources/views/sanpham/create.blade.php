@@ -71,6 +71,12 @@ Thêm mới sản phẩm
         <option value="2">Khả dụng</option>
     </select>
 
+    <div class="form-group">
+        <div class="file-loading">
+            <label>Hình ảnh liên quan sản phẩm</label>
+            <input id="sp_hinhanhlienquan" type="file" name="sp_hinhanhlienquan[]" multiple>
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary">Lưu</button>
 </form>
 @endsection
@@ -86,6 +92,17 @@ Thêm mới sản phẩm
 <script>
     $(document).ready(function() {
         $("#sp_hinh").fileinput({
+            theme: 'fas',
+            showUpload: false,
+            showCaption: false,
+            browseClass: "btn btn-primary btn-lg",
+            fileType: "any",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            overwriteInitial: false,
+            allowedFileExtensions: ["jpg", "gif", "png", "txt"]
+        });
+
+        $("#sp_hinhanhlienquan").fileinput({
             theme: 'fas',
             showUpload: false,
             showCaption: false,
