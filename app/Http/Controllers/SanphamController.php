@@ -18,14 +18,18 @@ class SanphamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        // Eloquent Model de lay du lieu
-        $ds_sanpham = SanPham::all(); // SELECT * FROM cusc_sanpham
+public function index()
+{
+    // Sử dụng Eloquent Model để truy vấn dữ liệu
+    $ds_sanpham = SanPham::all(); // SELECT * FROM sanpham
 
-        return view('sanpham.index')
-            ->with('danhsachsanpham', $ds_sanpham);
-    }
+    // Đường dẫn đến view được quy định như sau: <FolderName>.<ViewName>
+    // Mặc định đường dẫn gốc của method view() là thư mục `resources/views`
+    // Hiển thị view `sanpham.index`
+    return view('sanpham.index')
+        // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachsanpham`
+        ->with('danhsachsanpham', $ds_sanpham);
+}
 
     /**
      * Show the form for creating a new resource.

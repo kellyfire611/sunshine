@@ -38,5 +38,5 @@ Route::get('/admin/danhsachloai/{id}', 'LoaiController@edit')->name('danhsachloa
 Route::put('/admin/danhsachloai/{id}', 'LoaiController@update')->name('danhsachloai.update');
 Route::delete('/admin/danhsachloai/{id}', 'LoaiController@destroy')->name('danhsachloai.destroy');
 
-// route Sản phẩm
+// route Danh mục Sản phẩm
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');

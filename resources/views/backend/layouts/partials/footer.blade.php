@@ -1,7 +1,8 @@
-<div id="footer">
-    <div class="row">
-        <div class="col-md-12" id="main-footer">
-            FOOTER
-        </div>
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Anything you want
     </div>
-</div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+  </footer>
