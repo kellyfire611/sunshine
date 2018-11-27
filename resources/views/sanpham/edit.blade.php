@@ -102,8 +102,12 @@ Hiệu chỉnh sản phẩm
             showCaption: false,
             browseClass: "btn btn-primary btn-lg",
             fileType: "any",
+            append: false,
+            showRemove: false,
+            autoReplace: true,
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             overwriteInitial: false,
+            initialPreviewShowDelete: false,
             initialPreviewAsData: true,
             initialPreview: [
                 "{{ asset('storage/photos/' . $sp->sp_hinh) }}"
@@ -125,9 +129,13 @@ Hiệu chỉnh sản phẩm
             showCaption: false,
             browseClass: "btn btn-primary btn-lg",
             fileType: "any",
+            append: false,
+            showRemove: false,
+            autoReplace: true,
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             overwriteInitial: false,
             allowedFileExtensions: ["jpg", "gif", "png", "txt"],
+            initialPreviewShowDelete: false,
             initialPreviewAsData: true,
             initialPreview: [
                 @foreach($sp->hinhanhlienquan()->get() as $hinhAnh)
@@ -156,17 +164,7 @@ Hiệu chỉnh sản phẩm
 
 <script>
 $(document).ready(function(){
-    $('[data-mask-datetime]').inputmask('datetime', {
-        mask: "1/2/y h:s:s",
-        alias: "datetime",
-        inputFormat: "dd/mm/yyyy HH:MM:ss",
-        placeholder: "__/__/____ __:__:__",
-        separator: '/'
-    });
-
-    $('[data-mask-currency]').inputmask('99999999999 vnđ', {
-        numericInput: true
-    });
+    
 });
 </script>
 

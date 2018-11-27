@@ -125,13 +125,7 @@ Thêm mới sản phẩm
 
 <script>
 $(document).ready(function(){
-    $('[data-mask-datetime]').inputmask('datetime', {
-        mask: "1/2/y h:s:s",
-        alias: "datetime",
-        inputFormat: "dd/mm/yyyy HH:MM:ss",
-        placeholder: "__/__/____ __:__:__",
-        separator: '/'
-    });
+    
 });
 </script>
 
