@@ -76,6 +76,12 @@ Hiệu chỉnh sản phẩm
         <option value="2" {{ old('sp_trangThai', $sp->sp_trangThai) == 2 ? "selected" : "" }}>Kha dung</option>
     </select>
 
+    <div class="form-group">
+        <div class="file-loading">
+            <label>Hình ảnh liên quan sản phẩm</label>
+            <input id="sp_hinhanhlienquan" type="file" name="sp_hinhanhlienquan[]" multiple>
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary">Lưu</button>
 </form>
 @endsection
@@ -110,6 +116,34 @@ Hiệu chỉnh sản phẩm
                     url: "{$url}", 
                     key: 1
                 },
+            ]
+        });
+
+        $("#sp_hinhanhlienquan").fileinput({
+            theme: 'fas',
+            showUpload: false,
+            showCaption: false,
+            browseClass: "btn btn-primary btn-lg",
+            fileType: "any",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            overwriteInitial: false,
+            allowedFileExtensions: ["jpg", "gif", "png", "txt"],
+            initialPreviewAsData: true,
+            initialPreview: [
+                @foreach($sp->hinhanhlienquan()->get() as $hinhAnh)
+                "{{ asset('storage/photos/' . $hinhAnh->ha_ten) }}",
+                @endforeach
+            ],
+            initialPreviewConfig: [
+                @foreach($sp->hinhanhlienquan()->get() as $index=>$hinhAnh)
+                {
+                    caption: "{{ $hinhAnh->ha_ten }}", 
+                    size: {{ Storage::exists('public/photos/' . $hinhAnh->ha_ten) ? Storage::size('public/photos/' . $hinhAnh->ha_ten) : 0 }}, 
+                    width: "120px", 
+                    url: "{$url}", 
+                    key: {{ ($index + 1) }}
+                },
+                @endforeach
             ]
         });
     });
