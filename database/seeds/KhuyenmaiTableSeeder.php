@@ -24,15 +24,15 @@ class KhuyenmaiTableSeeder extends Seeder {
                 'km_batDau'               => $today->format('Y-m-d H:i:s'),
                 'km_ketThuc'              => $today->format('Y-m-d H:i:s'),
                 'km_giaTri'               => "km_giaTri $i",
-                'nv_nguoiLap'             => $i,
+                'nv_nguoiLap'             => 1,
                 'km_ngayLap'              => $today->format('Y-m-d H:i:s'),
-                'nv_kyNhay'               => $i,
+                'nv_kyNhay'               => 1,
                 'km_ngayKyNhay'           => $today->format('Y-m-d H:i:s'),
-                'nv_kyDuyet'              => $i,
+                'nv_kyDuyet'              => 1,
                 'km_ngayDuyet'            => $today->format('Y-m-d H:i:s'),
                 'km_taoMoi'               => $today->format('Y-m-d H:i:s'),
                 'km_capNhat'              => $today->format('Y-m-d H:i:s'),
-                'km_trangThai'            => $i
+                'km_trangThai'            => 1
             ]);
         }
         DB::table('cusc_khuyenmai')->insert($list);

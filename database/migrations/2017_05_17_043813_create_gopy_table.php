@@ -11,7 +11,7 @@ class CreateGopyTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_gopy', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->bigIncrements('gy_ma')->comment('Mã góp ý');
             $table->dateTime('gy_thoiGian')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm góp ý # Thời điểm góp ý');
             $table->text('gy_noiDung')->comment('Góp ý # Nội dung góp ý');

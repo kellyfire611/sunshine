@@ -11,7 +11,7 @@ class CreateChitietnhapTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_chitietnhap', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->unsignedBigInteger('pn_ma')->comment('Phiếu nhập # pn_ma # pn_ma # Mã phiếu nhập');
             $table->unsignedBigInteger('sp_ma')->comment('Sản phẩm # sp_ma # sp_ten # Mã sản phẩm');
             $table->unsignedTinyInteger('m_ma')->comment('Màu sắc # m_ma # m_ten # Mã màu sản phẩm, 1-Phối màu (đỏ, vàng, ...)');

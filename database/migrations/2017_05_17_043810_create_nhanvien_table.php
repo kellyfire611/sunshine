@@ -11,7 +11,7 @@ class CreateNhanvienTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_nhanvien', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->smallIncrements('nv_ma')->comment('Mã nhân viên, 1-chưa phân công');
             $table->string('nv_taiKhoan', 50)->comment('Tài khoản # Tài khoản');
             $table->string('nv_matKhau', 32)->comment('Mật khẩu # Mật khẩu');

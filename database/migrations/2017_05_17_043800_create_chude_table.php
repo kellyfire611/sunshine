@@ -11,7 +11,7 @@ class CreateChudeTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_chude', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->unsignedTinyInteger('cd_ma')->autoIncrement()->comment('Mã chủ đề');
             $table->string('cd_ten', 50)->comment('Tên chủ đề # Tên chủ đề');
             $table->timestamp('cd_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo chủ đề');

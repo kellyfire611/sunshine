@@ -11,7 +11,7 @@ class CreateHoadonsiTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_hoadonsi', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->bigIncrements('hds_ma')->comment('Mã hóa đơn bán sỉ');
             $table->string('hds_nguoiMuaHang', 100)->comment('Người mua hàng # Họ tên người mua hàng');
             $table->string('hds_tenDonVi', 200)->comment('Đơn vị # Tên đơn vị');

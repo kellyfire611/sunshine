@@ -11,7 +11,7 @@ class CreateHoadonleTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_hoadonle', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->bigIncrements('hdl_ma')->comment('Mã hóa đơn bán lẻ');
             $table->string('hdl_nguoiMuaHang', 100)->comment('Người mua hàng # Họ tên người mua hàng');
             $table->string('hdl_dienThoai', 11)->comment('Điện thoại # Điện thoại');

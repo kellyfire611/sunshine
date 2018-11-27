@@ -11,7 +11,7 @@ class CreateXuatxuTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_xuatxu', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->smallIncrements('xx_ma')->comment('Mã xuất xứ');
             $table->string('xx_ten', 100)->comment('Xuất xứ # Xuất xứ của sản phẩm');
             $table->timestamp('xx_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo xuất xứ');

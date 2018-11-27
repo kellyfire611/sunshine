@@ -14,7 +14,7 @@ class CreateDoanhthuSanphamTable extends Migration
     public function up()
     {
         Schema::create('cusc_doanhthu_sanpham', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedBigInteger('sp_ma');
             $table->decimal('giatri');

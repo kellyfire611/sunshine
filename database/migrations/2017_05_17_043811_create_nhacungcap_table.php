@@ -11,7 +11,7 @@ class CreateNhacungcapTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_nhacungcap', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->smallIncrements('ncc_ma')->comment('Mã nhà cung cấp, 1-Tự tạo');
             $table->string('ncc_ten', 100)->comment('Tên nhà cung cấp # Tên nhà cung cấp');
             $table->string('ncc_daiDien', 100)->comment('Đại diện # Người đại diện');

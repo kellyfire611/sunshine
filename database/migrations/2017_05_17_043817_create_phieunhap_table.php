@@ -11,7 +11,7 @@ class CreatePhieunhapTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_phieunhap', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->bigIncrements('pn_ma')->comment('Mã phiếu nhập');
             $table->string('pn_nguoiGiao', 100)->comment('Người giao hàng # Người giao hàng');
             $table->string('pn_soHoaDon', 15)->comment('Số hóa đơn # Số hóa đơn');

@@ -11,7 +11,7 @@ class CreateMauTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_mau', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->unsignedTinyInteger('m_ma')->autoIncrement()->comment('Mã màu sản phẩm, 1-Phối màu (đỏ, vàng, ...)');
             $table->string('m_ten', 50)->comment('Tên màu # Tên màu sản phẩm');
             $table->timestamp('m_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo màu');

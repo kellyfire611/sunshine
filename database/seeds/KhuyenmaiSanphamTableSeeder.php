@@ -16,7 +16,7 @@ class KhuyenmaiSanphamTableSeeder extends Seeder {
         $uFN = new VnFullname();
         $uPI = new VnPersonalInfo();
 
-        for ($i=1; $i <= 30; $i++) {
+        for ($i=1; $i <= 3; $i++) {
             $today = new DateTime();
             array_push($list, [
                 'km_ma'                   => $i,

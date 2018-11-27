@@ -11,7 +11,7 @@ class CreateKhachhangTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_khachhang', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->bigIncrements('kh_ma')->comment('Mã khách hàng');
             $table->string('kh_taiKhoan', 50)->comment('Tài khoản # Tài khoản');
             $table->string('kh_matKhau', 32)->comment('Mật khẩu # Mật khẩu');

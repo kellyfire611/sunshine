@@ -11,14 +11,14 @@ class ChudeSanphamTableSeeder extends Seeder {
     public function run() {
         $faker    = Faker\Factory::create('vi_VN');
 
-        $nChuDe   = 18;
+        $nChuDe   = 3;
         $chude    = [];
         for ($i=1; $i <= $nChuDe; $i++) {
             array_push($chude, $i);
         }
 
         $list     = [];
-        $nSanPham = 350;
+        $nSanPham = 3;
         for ($sp_ma=1; $sp_ma <= $nSanPham; $sp_ma++) {
             $count = $faker->numberBetween(1, $nChuDe);
             $ds    = $faker->randomElements($chude, $count);

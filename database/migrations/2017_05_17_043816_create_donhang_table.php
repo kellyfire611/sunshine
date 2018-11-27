@@ -11,7 +11,7 @@ class CreateDonhangTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_donhang', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->bigIncrements('dh_ma')->comment('Mã đơn hàng, 1-Không xuất hóa đơn');
             $table->unsignedBigInteger('kh_ma')->comment('Khách hàng # kh_ma # kh_hoTen # Mã khách hàng');
             $table->dateTime('dh_thoiGianDatHang')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm đặt hàng # Thời điểm đặt hàng');

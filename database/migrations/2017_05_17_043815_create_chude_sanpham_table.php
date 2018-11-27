@@ -11,7 +11,7 @@ class CreateChudeSanphamTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_chude_sanpham', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->unsignedBigInteger('sp_ma')->comment('Sản phẩm # sp_ma # sp_ten # Mã sản phẩm');
             $table->unsignedTinyInteger('cd_ma')->comment('Chủ để # cd_ma # cd_ten # Mã chủ đề');
             

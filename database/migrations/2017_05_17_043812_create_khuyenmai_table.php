@@ -11,9 +11,9 @@ class CreateKhuyenmaiTable extends Migration {
      */
     public function up() {
         Schema::create('cusc_khuyenmai', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+            $table->engine = 'InnoDB';
             $table->bigIncrements('km_ma')->comment('Mã chương trình khuyến mãi');
-            $table->string('km_ten', 200)->comment('Tên chương trình # Tên chương trình khuyến mãi');
+            $table->string('km_ten', 191)->comment('Tên chương trình # Tên chương trình khuyến mãi');
             $table->text('km_noiDung')->comment('Thông tin chi tiết # Nội dung chi tiết chương trình khuyến mãi');
             $table->dateTime('km_batDau')->comment('Thời điểm bắt đầu # Thời điểm bắt đầu khuyến mãi');
             $table->dateTime('km_ketThuc')->nullable()->default(NULL)->comment('Thời điểm kết thúc # Thời điểm kết thúc khuyến mãi');

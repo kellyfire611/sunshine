@@ -16,7 +16,7 @@ class MauSanphamTableSeeder extends Seeder {
         $uFN = new VnFullname();
         $uPI = new VnPersonalInfo();
 
-        for ($i=1; $i <= 30; $i++) {
+        for ($i=1; $i <= 2; $i++) {
             $today = new DateTime();
             array_push($list, [
                 'sp_ma'                   => $i,
