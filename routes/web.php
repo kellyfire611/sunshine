@@ -16,6 +16,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('test', 'TestController');
+Route::get('/testa/carbon', function() {
+    $value = \Carbon\Carbon::createFromFormat('d/m/Y H:i:s', '13/12/2031 23:11:23');
+    return $value;
+    dd($value);
+});
 
 /*
 use App\Loai;
@@ -38,5 +43,5 @@ Route::get('/admin/danhsachloai/{id}', 'LoaiController@edit')->name('danhsachloa
 Route::put('/admin/danhsachloai/{id}', 'LoaiController@update')->name('danhsachloai.update');
 Route::delete('/admin/danhsachloai/{id}', 'LoaiController@destroy')->name('danhsachloai.destroy');
 
-// route Sản phẩm
+// route Danh mục Sản phẩm
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');
