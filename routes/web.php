@@ -16,6 +16,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('test', 'TestController');
+Route::get('/testa/carbon', function() {
+    $value = \Carbon\Carbon::createFromFormat('d/m/Y H:i:s', '13/12/2031 23:11:23');
+    return $value;
+    dd($value);
+});
 
 /*
 use App\Loai;

@@ -10,6 +10,7 @@ use App\HinhAnh;
 use Session;
 use Storage;
 use DB;
+use App\Http\Requests\SanPhamRequest;
 
 class SanphamController extends Controller
 {
@@ -18,18 +19,18 @@ class SanphamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-public function index()
-{
-    // Sử dụng Eloquent Model để truy vấn dữ liệu
-    $ds_sanpham = SanPham::all(); // SELECT * FROM sanpham
+    public function index()
+    {
+        // Sử dụng Eloquent Model để truy vấn dữ liệu
+        $ds_sanpham = SanPham::all(); // SELECT * FROM sanpham
 
-    // Đường dẫn đến view được quy định như sau: <FolderName>.<ViewName>
-    // Mặc định đường dẫn gốc của method view() là thư mục `resources/views`
-    // Hiển thị view `sanpham.index`
-    return view('sanpham.index')
-        // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachsanpham`
-        ->with('danhsachsanpham', $ds_sanpham);
-}
+        // Đường dẫn đến view được quy định như sau: <FolderName>.<ViewName>
+        // Mặc định đường dẫn gốc của method view() là thư mục `resources/views`
+        // Hiển thị view `sanpham.index`
+        return view('sanpham.index')
+            // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachsanpham`
+            ->with('danhsachsanpham', $ds_sanpham);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -38,9 +39,14 @@ public function index()
      */
     public function create()
     {
-        $ds_loai = Loai::all();
+        // Sử dụng Eloquent Model để truy vấn dữ liệu
+        $ds_loai = Loai::all(); // SELECT * FROM loai
 
+        // Đường dẫn đến view được quy định như sau: <FolderName>.<ViewName>
+        // Mặc định đường dẫn gốc của method view() là thư mục `resources/views`
+        // Hiển thị view `sanpham.create`
         return view('sanpham.create')
+            // với dữ liệu truyền từ Controller qua View, được đặt tên là `danhsachloai`
             ->with('danhsachloai', $ds_loai);
     }
 
@@ -126,8 +132,9 @@ public function index()
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SanPhamRequest $request, $id)
     {
+        //dd($request);
         $sp = SanPham::where("sp_ma",  $id)->first();
         $sp->sp_ten = $request->sp_ten;
         $sp->sp_giaGoc = $request->sp_giaGoc;
