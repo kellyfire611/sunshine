@@ -235,6 +235,9 @@ class SanphamController extends Controller
 
     public function excel() 
     {
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export Excel
+        */
         // $ds_sanpham = Sanpham::all();
         // $ds_loai    = Loai::all();
         // $data = [
@@ -269,6 +272,9 @@ class SanphamController extends Controller
             'danhsachloai'    => $ds_loai,
         ];
 
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export PDF
+        */
         // return view('sanpham.pdf')
         //     ->with('danhsachsanpham', $ds_sanpham)
         //     ->with('danhsachloai', $ds_loai);

@@ -48,11 +48,11 @@
             </tr>
             @foreach ($danhsachsanpham as $sp)
             <tr style="border: 1px solid #000">
-                <td align="center" valign="middle" width="5">{{ $loop->index + 1 }}
-                    <img class="hinhSanPham" src="storage/{{ $sp->sp_hinh }}" width="100" height="100" style="position: relative; left: -100px" />
+                <td align="center" valign="middle" width="5">
+                    {{ $loop->index + 1 }}
                 </td>
                 <td align="center" valign="middle" width="20" height="110">
-
+                    <img class="hinhSanPham" src="{{ asset('storage/photos/' . $sp->sp_hinh) }}" width="100" height="100" />
                 </td>
                 <td align="left" valign="middle" width="30">{{ $sp->sp_ten }}</td>
                 <td align="right" valign="middle" width="15">{{ $sp->sp_giaGoc }}</td>
