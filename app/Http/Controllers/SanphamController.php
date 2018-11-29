@@ -11,6 +11,9 @@ use Session;
 use Storage;
 use DB;
 use App\Http\Requests\SanPhamRequest;
+use App\Exports\SanPhamExport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SanphamController extends Controller
 {
@@ -228,5 +231,49 @@ class SanphamController extends Controller
 
         Session::flash('alert-info', 'Xóa sản phẩm thành công ^^~!!!');
         return redirect()->route('danhsachsanpham.index');
+    }
+
+    public function excel() 
+    {
+        // $ds_sanpham = Sanpham::all();
+        // $ds_loai    = Loai::all();
+        // $data = [
+        //     'danhsachsanpham' => $ds_sanpham,
+        //     'danhsachloai'    => $ds_loai,
+        // ];
+        // return view('sanpham.excel')
+        //     ->with('danhsachsanpham', $ds_sanpham)
+        //     ->with('danhsachloai', $ds_loai);
+
+        return Excel::download(new SanPhamExport, 'danhsachsanpham.xlsx');
+
+        // Excel::create('DanhMucSanPham', function($excel) {
+        //     $excel->sheet('Danh mục sản phẩm', function($sheet) {
+        //       $ds_sanpham = Sanpham::all();
+        //       $ds_loai    = Loai::all();
+        //       $data = [
+        //         'danhsachsanpham' => $ds_sanpham,
+        //         'dsLoai'    => $ds_loai,
+        //       ];
+        //       $sheet->loadView("sanpham.excel2", $data);
+        //     });
+        //   })->download('xlsx');
+    }
+
+    public function pdf() 
+    {
+        $ds_sanpham = Sanpham::all();
+        $ds_loai    = Loai::all();
+        $data = [
+            'danhsachsanpham' => $ds_sanpham,
+            'danhsachloai'    => $ds_loai,
+        ];
+
+        // return view('sanpham.pdf')
+        //     ->with('danhsachsanpham', $ds_sanpham)
+        //     ->with('danhsachloai', $ds_loai);
+
+        $pdf = PDF::loadView('sanpham.pdf', $data);
+        return $pdf->download('DanhMucSanPham.pdf');
     }
 }

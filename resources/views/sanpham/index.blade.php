@@ -27,6 +27,20 @@ Danh sách sản phẩm
 -->
 <a href="{{ route('danhsachsanpham.create') }}" class="btn btn-primary">Thêm mới sản phẩm</a>
 
+<!-- Tạo nút Xuất Excel danh sách sản phẩm
+- Theo quy ước, các route đã được đăng ký trong file `web.php` đều phải được đặt tên để dễ dàng bảo trì code sau này.
+- Đường dẫn URL là đường dẫn được tạo ra bằng route có tên `danhsachsanpham.excel`
+- Sẽ có dạng http://tenmiencuaban.com/admin/danhsachsanpham/excel
+-->
+<a href="{{ route('danhsachsanpham.excel') }}" class="btn btn-primary">Xuất Excel</a>
+
+<!-- Tạo nút Xuất PDF danh sách sản phẩm
+- Theo quy ước, các route đã được đăng ký trong file `web.php` đều phải được đặt tên để dễ dàng bảo trì code sau này.
+- Đường dẫn URL là đường dẫn được tạo ra bằng route có tên `danhsachsanpham.pdf`
+- Sẽ có dạng http://tenmiencuaban.com/admin/danhsachsanpham/pdf
+-->
+<a href="{{ route('danhsachsanpham.pdf') }}" class="btn btn-primary">Xuất PDF</a>
+
 <!-- Tạo table hiển thị danh sách các sản phẩm -->
 <table class="table table-bordered">
     <thead>
