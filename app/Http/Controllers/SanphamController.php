@@ -233,6 +233,9 @@ class SanphamController extends Controller
         return redirect()->route('danhsachsanpham.index');
     }
 
+    /**
+     * Action xuất Excel
+     */
     public function excel() 
     {
         /* Code dành cho việc debug
@@ -249,20 +252,11 @@ class SanphamController extends Controller
         //     ->with('danhsachloai', $ds_loai);
 
         return Excel::download(new SanPhamExport, 'danhsachsanpham.xlsx');
-
-        // Excel::create('DanhMucSanPham', function($excel) {
-        //     $excel->sheet('Danh mục sản phẩm', function($sheet) {
-        //       $ds_sanpham = Sanpham::all();
-        //       $ds_loai    = Loai::all();
-        //       $data = [
-        //         'danhsachsanpham' => $ds_sanpham,
-        //         'dsLoai'    => $ds_loai,
-        //       ];
-        //       $sheet->loadView("sanpham.excel2", $data);
-        //     });
-        //   })->download('xlsx');
     }
 
+    /**
+     * Action xuất PDF
+     */
     public function pdf() 
     {
         $ds_sanpham = Sanpham::all();

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Danh sách khách hàng</title>
+    <title>Danh sách sản phẩm</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
         * {
@@ -31,12 +31,9 @@
                     <img src="{{ asset('storage/sunshine_wm64.png') }}" /></td>
             </tr>
             <tr>
-                <td colspan="6" align="center">
-                    <br /></td>
-            </tr>
-            <tr>
-                <td colspan="6" class="caption" style="text-align: center; font-size: 20px">
-                    <b>Danh sách sản phẩm</b></td>
+                <td colspan="6" class="caption" align="center" style="text-align: center; font-size: 20px">
+                    <b>Danh sách sản phẩm</b>
+                </td>
             </tr>
             <tr style="border: 1px solid #000">
                 <th style="text-align: center">STT</th>
