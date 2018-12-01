@@ -38,7 +38,7 @@
                 <td colspan="6" class="caption" style="text-align: center; font-size: 20px">
                     <b>Danh sách sản phẩm</b></td>
             </tr>
-            <tr style="border: 1px solid #000">
+            <tr style="border: 1px thin #000">
                 <th style="text-align: center">STT</th>
                 <th style="text-align: center">Hình sản phẩm</th>
                 <th style="text-align: center">Tên sản phẩm</th>
@@ -47,7 +47,7 @@
                 <th style="text-align: center">Loại sản phẩm</th>
             </tr>
             @foreach ($danhsachsanpham as $sp)
-            <tr style="border: 1px solid #000">
+            <tr style="border: 1px thin #000">
                 <td align="center" valign="middle" width="5">
                     {{ $loop->index + 1 }}
                 </td>
