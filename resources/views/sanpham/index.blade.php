@@ -41,6 +41,13 @@ Danh sách sản phẩm
 -->
 <a href="{{ route('danhsachsanpham.pdf') }}" class="btn btn-primary">Xuất PDF</a>
 
+<!-- Tạo nút xem biểu mẫu khi in trên web
+- Theo quy ước, các route đã được đăng ký trong file `web.php` đều phải được đặt tên để dễ dàng bảo trì code sau này.
+- Đường dẫn URL là đường dẫn được tạo ra bằng route có tên `danhsachsanpham.print`
+- Sẽ có dạng http://tenmiencuaban.com/admin/danhsachsanpham/print
+-->
+<a href="{{ route('danhsachsanpham.print') }}" class="btn btn-primary">In ấn</a>
+
 <!-- Tạo table hiển thị danh sách các sản phẩm -->
 <table class="table table-bordered">
     <thead>

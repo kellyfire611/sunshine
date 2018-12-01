@@ -46,4 +46,5 @@ Route::delete('/admin/danhsachloai/{id}', 'LoaiController@destroy')->name('danhs
 // route Danh mục Sản phẩm
 Route::get('/admin/danhsachsanpham/excel', 'SanPhamController@excel')->name('danhsachsanpham.excel');
 Route::get('/admin/danhsachsanpham/pdf', 'SanPhamController@pdf')->name('danhsachsanpham.pdf');
+Route::get('/admin/danhsachsanpham/print', 'SanPhamController@print')->name('danhsachsanpham.print');
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');
