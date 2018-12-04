@@ -36,6 +36,12 @@ Route::get('/danhsachloai', function() {
 });
 */
 
+// Admin routes
+// $router->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function($router)
+// {
+//     $router->resource('user', 'UserController');
+// });
+
 // tencontroller@action
 // route Loai
 Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
@@ -48,3 +54,6 @@ Route::get('/admin/danhsachsanpham/excel', 'SanPhamController@excel')->name('dan
 Route::get('/admin/danhsachsanpham/pdf', 'SanPhamController@pdf')->name('danhsachsanpham.pdf');
 Route::get('/admin/danhsachsanpham/print', 'SanPhamController@print')->name('danhsachsanpham.print');
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

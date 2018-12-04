@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ví dụ đầu tiên AngularJS</title>
+
+    <!-- Include script angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="" ng-init="danhsachsanpham=[
+            {tensanpham:'hoa lan',loai:'hoa tiệc cưới', gia: 5000},
+            {tensanpham:'hoa hồng',loai:'hoa tình yêu', gia: 2000},
+            {tensanpham:'hoa tươi',loai:'hoa văn phòng', gia: 3000}
+        ]">
+
+        <ul>
+            <li ng-repeat="x in danhsachsanpham">
+                {{ x.tensanpham + ', ' + x.loai + ': ' + x.gia }}
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>

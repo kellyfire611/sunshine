@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ví dụ đầu tiên AngularJS</title>
+
+    <!-- Include script angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="" ng-init="quantity=2;price=2500">
+        <p>Tên khách hàng: <input type="text" ng-model="name"></p>
+        <p ng-bind="name"></p>
+
+        Số lượng: <input type="number" ng-model="quantity"><br />
+        Giá tiền: <input type="number" ng-model="price"><br />
+        Tổng cộng: {{ quantity * price }}
+    </div>
+</body>
+</html>

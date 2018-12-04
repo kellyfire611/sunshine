@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ví dụ đầu tiên AngularJS</title>
+
+    <!-- Include script angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+        <!-- https://viblo.asia/p/form-validation-trong-angularjs-va-ng-messages-nwmGyWZPkoW -->
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        Nhập họ: <input type="text" ng-model="ho"><br>
+        Nhập tên: <input type="text" ng-model="ten"><br>
+        <br>
+        Tên đầy đủ của bạn: {{ fullName() }}
+        
+    </div>
+        
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.ho = "Dương Nguyễn Phú";
+            $scope.ten = "Cường";
+            $scope.fullName = function() {
+                return $scope.ho + " " + $scope.ten;
+            };
+        });
+    </script>
+</body>
+</html>

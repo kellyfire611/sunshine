@@ -33,7 +33,7 @@ class LoaiRequest extends FormRequest
 
     public function messages() {
         return [
-            'l_ten.required' => 'Ten loai bat buoc nhap',
+            'l_ten.required' => __('Ten loai bat buoc nhap'),
             'l_ten.unique' => 'Ten loai da co trong he thong. Vui long kiem tra lai.',
             'l_ten.max' => 'Ten loai da vuot qua so luong cho phep',
             'l_taoMoi.required' => 'Ngay tao moi khong duoc phep rong'
