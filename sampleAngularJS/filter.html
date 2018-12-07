@@ -29,7 +29,7 @@
                         Nhập họ: <input type="text" ng-model="ho"><br>
                         Nhập tên: <input type="text" ng-model="ten"><br>
                         <br>
-                        Tên đầy đủ của bạn: {{ fullName() }}
+                        Tên đầy đủ của bạn: {{ fullName() | uppercase }}
                     </div>
                 </div>
             </div>
@@ -38,9 +38,10 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">Danh sách sản phẩm</div>
                     <div class="panel-body">
+                        Gõ từ khóa tìm kiếm: <input type="text" ng-model="tukhoatimkiem">
                         <ul>
-                            <li ng-repeat="x in danhsachsanpham">
-                                {{ x.tensanpham + ', ' + x.loai + ': ' + x.gia }}
+                            <li ng-repeat="x in danhsachsanpham | filter:tukhoatimkiem">
+                                {{ x.tensanpham + ', ' + x.loai + ': ' }} {{ x.gia | currency }}
                             </li>
                         </ul>
                     </div>

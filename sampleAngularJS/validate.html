@@ -1,34 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ví dụ đầu tiên AngularJS</title>
+    <title>Ví dụ validate form AngularJS</title>
+
+    <!-- Include thư viện Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
     <!-- Include script angularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-</head>
-<body>
-        <!-- https://viblo.asia/p/form-validation-trong-angularjs-va-ng-messages-nwmGyWZPkoW -->
-    <div ng-app="myApp" ng-controller="myCtrl">
 
-        Nhập họ: <input type="text" ng-model="ho"><br>
-        Nhập tên: <input type="text" ng-model="ten"><br>
-        <br>
-        Tên đầy đủ của bạn: {{ fullName() }}
-        
+    <style>
+        .error {color: red;}
+        .valid {color: blue;}
+    </style>
+</head>
+
+<body>
+    <div ng-app="validationApp" ng-controller="mainController">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <form name="userForm" ng-submit="submitForm()" novalidate>
+                        <!-- Tên -->
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" ng-model="name" ng-minlength="2"
+                                ng-maxlength="20" ng-required=true>
+
+                            <span class="error" ng-show="userForm.name.$error.required">Vui lòng nhập tên</span>
+                            <span class="error" ng-show="userForm.name.$error.minlength">Tên phải > 2 ký tự</span>
+                            <span class="error" ng-show="userForm.name.$error.maxlength">Tên phải <= 20 ký tự</span>
+                                    <span class="valid" ng-show="userForm.name.$valid">Hợp lệ</span>
+                        </div>
+
+                        <!-- Tuổi -->
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" name="age" class="form-control" ng-model="age" ng-required=true>
+                            <span class="error" ng-show="userForm.age.$error.required">Vui lòng nhập tuổi</span>
+                            <span class="error" ng-show="!userForm.age.$error.required && userForm.age.$invalid">Tuổi
+                                phải là số</span>
+                            <span class="valid" ng-show="userForm.age.$valid">Hợp lệ</span>
+                        </div>
+
+                        <!-- Tên đăng nhập -->
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control" ng-model="username" ng-minlength="6"
+                                ng-maxlength="12" ng-required=true>
+                            <span class="error" ng-show="userForm.username.$error.required">Vui lòng nhập tên đăng nhập</span>
+                            <span class="error" ng-show="userForm.username.$error.minlength">Tên đăng nhập phải > 6 ký
+                                tự</span>
+                            <span class="error" ng-show="userForm.username.$error.maxlength">Tên đăng nhập phải <= 12 6
+                                    ký tự</span> <span class="valid" ng-show="userForm.username.$valid">Hợp lệ</span>
+                        </div>
+
+                        <!-- Mật khẩu -->
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control" type="password" name="password" ng-show="!showPassword"
+                                ng-model="password" ng-required=true>
+                            <input class="form-control" type="text" name="plainPassword" ng-show="showPassword" ng-model="password"
+                                ng-required=true>
+                            <span class="error" ng-show="userForm.password.$error.required">Vui lòng nhập mật khẩu</span>
+                            <span class="valid" ng-show="userForm.password.$valid">Hợp lệ</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="showPassword" ng-model="showPassword">
+                            <label class="comment" for="showPassword">
+                                Hiển thị mật khẩu
+                            </label>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="mail" name="mail" ng-model="mail" ng-pattern="/^.+@gmail\.com$/"
+                                ng-required=true>
+                            <span class="error" ng-show="userForm.mail.$error.required">Vui lòng nhập email</span>
+                            <span class="error" ng-show="!userForm.mail.$error.required&&userForm.mail.$error.pattern">Chỉ
+                                chấp nhập GMAIL, vui lòng kiểm tra lại</span>
+                            <span class="valid" ng-show="userInfo.mail.$valid">Hợp lệ</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Đăng ký</button>
+
+                    </form>
+                </div>
+
+                <script>
+                    // tạo angular app
+                    var validationApp = angular.module('validationApp', []);
+
+                    // tạo Controller
+                    validationApp.controller('mainController', function ($scope) {
+
+                        // hàm submit form sau khi đã kiểm tra các ràng buộc (validate)
+                        $scope.submitForm = function () {
+
+                            // kiểm tra các ràng buộc là hợp lệ
+                            if ($scope.userForm.$valid) {
+                                alert('Hợp lệ, dữ liệu đã được gởi đăng ký.');
+                            }
+                        };
+                    });
+                </script>
+            </div>
+        </div>
     </div>
-        
-    <script>
-        var app = angular.module('myApp', []);
-        app.controller('myCtrl', function($scope) {
-            $scope.ho = "Dương Nguyễn Phú";
-            $scope.ten = "Cường";
-            $scope.fullName = function() {
-                return $scope.ho + " " + $scope.ten;
-            };
-        });
-    </script>
 </body>
+
 </html>
