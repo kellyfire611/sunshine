@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
 Route::resource('test', 'TestController');
 Route::get('/testa/carbon', function() {
@@ -56,4 +53,6 @@ Route::get('/admin/danhsachsanpham/print', 'SanPhamController@print')->name('dan
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'FrontendController@index')->name('frontend.home');
+Route::get('/gioi-thieu', 'FrontendController@about')->name('frontend.about');
+Route::get('/lien-he', 'FrontendController@contact')->name('frontend.contact');
