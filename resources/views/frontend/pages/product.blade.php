@@ -13,6 +13,8 @@ Danh sách sản phẩm Shop Hoa tươi - Sunshine
 {{-- Thay thế nội dung vào Placeholder `main-content` của view `frontend.layouts.index` --}}
 @section('main-content')
 
+@include('frontend.widgets.product-list', [$data = $danhsachsanpham])
+
 @endsection
 
 {{-- Thay thế nội dung vào Placeholder `custom-scripts` của view `frontend.layouts.index` --}}
