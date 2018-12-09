@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Loai;
 use DB;
+use Mail;
+use App\Mail\ContactMailer;
 
 class FrontendController extends Controller
 {
@@ -45,6 +47,21 @@ class FrontendController extends Controller
     public function contact()
     {
         return view('frontend.pages.contact');
+    }
+
+    /**
+     * Action gởi email với các lời nhắn nhận được từ khách hàng
+     * POST /lien-he/goi-loi-nhan
+     */
+    public function sendMailContactForm(Request $request)
+    {
+        $input = $request->all();
+        //$data = json_encode($input);
+        //dd($input);
+        Mail::to('tester.agmk@gmail.com')
+            ->send(new ContactMailer($input));
+
+        return $input;
     }
 
     /**

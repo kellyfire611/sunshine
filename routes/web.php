@@ -56,4 +56,5 @@ Auth::routes();
 Route::get('/', 'FrontendController@index')->name('frontend.home');
 Route::get('/gioi-thieu', 'FrontendController@about')->name('frontend.about');
 Route::get('/lien-he', 'FrontendController@contact')->name('frontend.contact');
+Route::post('/lien-he/goi-loi-nhan', 'FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
 Route::get('/san-pham', 'FrontendController@product')->name('frontend.product');
