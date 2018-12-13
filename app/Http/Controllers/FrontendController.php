@@ -25,10 +25,21 @@ class FrontendController extends Controller
         // Query tìm danh sách sản phẩm
         $danhsachsanpham = $this->searchSanPham($request);
 
+        // Query Lấy các hình ảnh liên quan của các Sản phẩm đã được lọc
+        $danhsachhinhanhlienquan = DB::table('cusc_hinhanh')
+                                ->whereIn('sp_ma', $danhsachsanpham->pluck('sp_ma')->toArray())
+                                ->get();
+        // dd($danhsachhinhanhlienquan->toArray());
+
+        // Query danh sách Loại
+        $danhsachloai = Loai::all();
+
         // Hiển thị view `frontend.index` với dữ liệu truyền vào
         return view('frontend.index')
             ->with('ds_top3_newest_loaisanpham', $ds_top3_newest_loaisanpham)
-            ->with('danhsachsanpham', $danhsachsanpham);
+            ->with('danhsachsanpham', $danhsachsanpham)
+            ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+            ->with('danhsachloai', $danhsachloai);
     }
 
     /**
@@ -86,32 +97,32 @@ class FrontendController extends Controller
         {
             $query->where('l_ma', $searchByLoaiMa);
         }
-
-
-        // if ($name) {
-        //     $query->where(function ($q) use ($name) {
-        //         $q->where('first_name', 'like', "$name%")
-        //             ->orWhere('last_name', 'like', "$name%");
-        //     });
-        // }
-        // if ($specialty_s) {
-        //     $query->where('primary_specialty', $specialty_s);
-        // }
-        // if ($city_s) {
-        //     $query->where('city', $city_s);
-        // }
-        // if ($state_s) {
-        //     $query->where('state_province', $state_s);
-        // }
-        // if ($lundbeck_id_s) {
-        //     $query->where('customer_master_id', $lundbeck_id_s);
-        // }
-        // if ($degree_s) {
-        //     $query->where('primary_degree', $degree_s);
-        // }
         
         $data = $query->get();
 
         return $data;
     }
 }
+
+
+// if ($name) {
+//     $query->where(function ($q) use ($name) {
+//         $q->where('first_name', 'like', "$name%")
+//             ->orWhere('last_name', 'like', "$name%");
+//     });
+// }
+// if ($specialty_s) {
+//     $query->where('primary_specialty', $specialty_s);
+// }
+// if ($city_s) {
+//     $query->where('city', $city_s);
+// }
+// if ($state_s) {
+//     $query->where('state_province', $state_s);
+// }
+// if ($lundbeck_id_s) {
+//     $query->where('customer_master_id', $lundbeck_id_s);
+// }
+// if ($degree_s) {
+//     $query->where('primary_degree', $degree_s);
+// }
