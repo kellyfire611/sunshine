@@ -22,7 +22,6 @@ Liên hệ Shop Hoa tươi - Sunshine
 
 	<!-- Content page -->
 	<section class="bg0 p-t-104 p-b-116" ng-controller="contactController">
-		<% aa %>
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
@@ -150,7 +149,6 @@ Liên hệ Shop Hoa tươi - Sunshine
 <script>
 	// Khai báo controller `contactController`
 	app.controller('contactController', function ($scope, $http) {
-		$scope.aa = 'sdadas';
 		// hàm submit form sau khi đã kiểm tra các ràng buộc (validate)
 		$scope.submitContactForm = function () {
 			// kiểm tra các ràng buộc là hợp lệ, gởi AJAX đến action 
@@ -168,15 +166,13 @@ Liên hệ Shop Hoa tươi - Sunshine
 					method: "POST",
 					data: JSON.stringify(dataInputContactForm)
 				}).then(function successCallback(response) {
-						// this callback will be called asynchronously
-						// when the response is available
-						//$scope.data = response.data;
-						alert('ok');
+						// Gởi mail thành công, thông báo cho khách hàng biết
+						swal('Gởi mail thành công!', 'Chúng tôi sẽ trả lời Quý khách trong thời gian sớm nhất. Xin cám ơn!', 'success');
 
 					}, function errorCallback(response) {
-						// called asynchronously if an error occurs
-						// or server returns response with an error status.
-						$scope.error = response.statusText;
+						// Gởi mail không thành công, thông báo lỗi cho khách hàng biết
+						swal('Có lỗi trong quá trình gởi mail!', 'Vui lòng thử lại sau vài phút.', 'error');
+            			console.log(response);
 				});
 			}
 		};

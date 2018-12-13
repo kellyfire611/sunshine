@@ -102,11 +102,26 @@ class FrontendController extends Controller
      */
     public function product(Request $request)
     {
+        // Query tìm danh sách sản phẩm
         $danhsachsanpham = $this->searchSanPham($request);
 
-        //dd($danhsachsanpham);
+        // Query Lấy các hình ảnh liên quan của các Sản phẩm đã được lọc
+        $danhsachhinhanhlienquan = DB::table('cusc_hinhanh')
+                                ->whereIn('sp_ma', $danhsachsanpham->pluck('sp_ma')->toArray())
+                                ->get();
+
+        // Query danh sách Loại
+        $danhsachloai = Loai::all();
+
+        // Query danh sách màu
+        $danhsachmau = Mau::all();
+
+        // Hiển thị view `frontend.index` với dữ liệu truyền vào
         return view('frontend.pages.product')
-            ->with('danhsachsanpham', $danhsachsanpham);
+            ->with('danhsachsanpham', $danhsachsanpham)
+            ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+            ->with('danhsachmau', $danhsachmau)
+            ->with('danhsachloai', $danhsachloai);
     }
 
     /**
