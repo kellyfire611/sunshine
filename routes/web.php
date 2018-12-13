@@ -58,3 +58,5 @@ Route::get('/gioi-thieu', 'FrontendController@about')->name('frontend.about');
 Route::get('/lien-he', 'FrontendController@contact')->name('frontend.contact');
 Route::post('/lien-he/goi-loi-nhan', 'FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
 Route::get('/san-pham', 'FrontendController@product')->name('frontend.product');
+Route::get('/san-pham/{id}', 'FrontendController@productDetail')->name('frontend.productDetail');
+Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');

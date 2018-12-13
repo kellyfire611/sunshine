@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Loai;
+use App\Mau;
+use App\Sanpham;
 use DB;
 use Mail;
 use App\Mail\ContactMailer;
@@ -29,17 +31,39 @@ class FrontendController extends Controller
         $danhsachhinhanhlienquan = DB::table('cusc_hinhanh')
                                 ->whereIn('sp_ma', $danhsachsanpham->pluck('sp_ma')->toArray())
                                 ->get();
-        // dd($danhsachhinhanhlienquan->toArray());
 
         // Query danh sách Loại
         $danhsachloai = Loai::all();
+
+        // Query danh sách màu
+        $danhsachmau = Mau::all();
 
         // Hiển thị view `frontend.index` với dữ liệu truyền vào
         return view('frontend.index')
             ->with('ds_top3_newest_loaisanpham', $ds_top3_newest_loaisanpham)
             ->with('danhsachsanpham', $danhsachsanpham)
             ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+            ->with('danhsachmau', $danhsachmau)
             ->with('danhsachloai', $danhsachloai);
+    }
+
+    /**
+     * Query tìm danh sách sản phẩm theo nhiều điều kiện
+     */
+    private function searchSanPham(Request $request)
+    {
+        $query = DB::table('cusc_sanpham')->select('*');
+
+        // Kiểm tra điều kiện `searchByLoaiMa`
+        $searchByLoaiMa = $request->query('searchByLoaiMa');
+        if($searchByLoaiMa != null)
+        {
+            $query->where('l_ma', $searchByLoaiMa);
+        }
+        
+        $data = $query->get();
+
+        return $data;
     }
 
     /**
@@ -67,8 +91,6 @@ class FrontendController extends Controller
     public function sendMailContactForm(Request $request)
     {
         $input = $request->all();
-        //$data = json_encode($input);
-        //dd($input);
         Mail::to('tester.agmk@gmail.com')
             ->send(new ContactMailer($input));
 
@@ -87,20 +109,41 @@ class FrontendController extends Controller
             ->with('danhsachsanpham', $danhsachsanpham);
     }
 
-    private function searchSanPham(Request $request)
+    /**
+     * Action hiển thị chi tiết Sản phẩm
+     */
+    public function productDetail(Request $request, $id)
     {
-        $query = DB::table('cusc_sanpham')->select('*');
+        $sanpham = SanPham::find($id);
 
-        // Kiểm tra điều kiện `searchByLoaiMa`
-        $searchByLoaiMa = $request->query('searchByLoaiMa');
-        if($searchByLoaiMa != null)
-        {
-            $query->where('l_ma', $searchByLoaiMa);
-        }
-        
-        $data = $query->get();
+        // Query Lấy các hình ảnh liên quan của các Sản phẩm đã được lọc
+        $danhsachhinhanhlienquan = DB::table('cusc_hinhanh')
+                                ->where('sp_ma', $id)
+                                ->get();
 
-        return $data;
+        // Query danh sách Loại
+        $danhsachloai = Loai::all();
+
+        // Query danh sách màu
+        $danhsachmau = Mau::all();
+
+        return view('frontend.pages.product-detail')
+            ->with('sp', $sanpham)
+            ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+            ->with('danhsachmau', $danhsachmau)
+            ->with('danhsachloai', $danhsachloai);
+    }
+
+    /**
+     * Action hiển thị giỏ hàng
+     */
+    public function cart(Request $request)
+    {
+        $danhsachsanpham = $this->searchSanPham($request);
+
+        //dd($danhsachsanpham);
+        return view('frontend.pages.shopping-cart')
+            ->with('danhsachsanpham', $danhsachsanpham);
     }
 }
 
