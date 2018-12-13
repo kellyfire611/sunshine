@@ -13,6 +13,7 @@
 		</div>
 		
 		<div class="header-cart-content flex-w js-pscroll">
+			<!-- Sử dụng plugin ngCart AngularJS để hiển thị Giỏ hànng -->
 			<ngcart-cart template-url="{{ asset('vendor/ngCart/template/ngCart/sidebar-cart.html') }}"></ngcart-cart>
 		</div>
 	</div>

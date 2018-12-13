@@ -154,11 +154,7 @@ class FrontendController extends Controller
      */
     public function cart(Request $request)
     {
-        $danhsachsanpham = $this->searchSanPham($request);
-
-        //dd($danhsachsanpham);
-        return view('frontend.pages.shopping-cart')
-            ->with('danhsachsanpham', $danhsachsanpham);
+        return view('frontend.pages.shopping-cart');
     }
 }
 
