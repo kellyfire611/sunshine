@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use DB;
 use Mail;
 use App\Mail\ContactMailer;
+use App\Mail\OrderMailer;
 
 class FrontendController extends Controller
 {
@@ -177,6 +178,8 @@ class FrontendController extends Controller
     public function order(Request $request)
     {
         // dd($request);
+        // Data gởi mail
+        $dataMail = [];
         try {
             // Tạo mới khách hàng
             $khachhang = new Khachhang();
@@ -194,6 +197,7 @@ class FrontendController extends Controller
             }
             $khachhang->kh_trangThai = 2; // Khả dụng
             $khachhang->save();
+            $dataMail['khachhang'] = $khachhang->toArray();
 
             // Tạo mới đơn hàng
             $donhang = new Donhang();
@@ -212,6 +216,7 @@ class FrontendController extends Controller
             $donhang->vc_ma = $request->donhang['vc_ma'];
             $donhang->tt_ma = $request->donhang['tt_ma'];
             $donhang->save();
+            $dataMail['donhang'] = $donhang->toArray();
 
             // Lưu chi tiết đơn hàng
             foreach($request->giohang['items'] as $sp)
@@ -223,7 +228,14 @@ class FrontendController extends Controller
                 $chitietdonhang->ctdh_soLuong = $sp['_quantity'];
                 $chitietdonhang->ctdh_donGia = $sp['_price'];
                 $chitietdonhang->save();
+                $dataMail['donhang']['chitiet'][] = $chitietdonhang->toArray();
+                $dataMail['donhang']['giohang'][] = $sp;
             }
+
+            // Gởi mail khách hàng
+            // dd($dataMail);
+            Mail::to($khachhang->kh_email)
+                ->send(new OrderMailer($dataMail));
         }
         catch(ValidationException $e) {
             return response()->json(array(

@@ -33,11 +33,10 @@ class OrderMailer extends Mailable
      */
     public function build()
     {
-        $dh_ma = $this->data['dh_ma'];
+        $dh_ma = $this->data['donhang']['dh_ma'];
         return $this->from(env('MAIL_FROM_ADDRESS', 'hotro@sunshine.com'), env('MAIL_FROM_NAME', 'HoTro'))
-            ->replyTo($dh_ma)
             ->subject("Đơn hàng [$dh_ma] hoàn tất")
-            ->view('emails.sunshine')
+            ->view('emails.order-email')
             ->with('data', $this->data);
     }
 }

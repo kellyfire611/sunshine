@@ -186,7 +186,7 @@ Giỏ hàng Shop Hoa tươi - Sunshine
             Chúng tôi sẽ gởi mail đển quý khách. Xin chân thành cám ơn Quý Khách hàng đã tin tưởng sản phẩm của chúng tôi.
         </div>
         <!-- Nút submit form -->
-        <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer mb-4" ng-disabled="orderForm.$invalid">
+        <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer mb-4" ng-disabled="orderForm.$invalid && ngCart.getTotalItems() === 0">
             Thanh toán
         </button>
     </form>
@@ -199,6 +199,8 @@ Giỏ hàng Shop Hoa tươi - Sunshine
 <script>
 	// Khai báo controller `orderController`
 	app.controller('orderController', function ($scope, $http, ngCart) {
+        $scope.ngCart = ngCart;
+
 		// hàm submit form sau khi đã kiểm tra các ràng buộc (validate)
 		$scope.submitOrderForm = function () {
             debugger;
@@ -241,11 +243,16 @@ Giỏ hàng Shop Hoa tươi - Sunshine
 					method: "POST",
 					data: JSON.stringify(dataInputOrderForm)
 				}).then(function successCallback(response) {
+                        // Clear giỏ hàng ngCart
+                        //$scope.ngCart.empty();
+
 						// Gởi mail thành công, thông báo cho khách hàng biết
 						swal('Đơn hàng hoàn tất!', 'Xin cám ơn Quý khách!', 'success');
-                        if(response.redirectUrl)
+
+                        // Chuyển sang trang Hoàn tất đặt hàng
+                        if(response.data.redirectUrl)
                         {
-                            location.href = response.redirectUrl;
+                            location.href = response.data.redirectUrl;
                         }
 					}, function errorCallback(response) {
 						// Gởi mail không thành công, thông báo lỗi cho khách hàng biết
