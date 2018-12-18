@@ -60,3 +60,4 @@ Route::post('/lien-he/goi-loi-nhan', 'FrontendController@sendMailContactForm')->
 Route::get('/san-pham', 'FrontendController@product')->name('frontend.product');
 Route::get('/san-pham/{id}', 'FrontendController@productDetail')->name('frontend.productDetail');
 Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');
+Route::post('/don-hang', 'FrontendController@order')->name('frontend.order');

@@ -14,7 +14,7 @@ class CreateNhanvienTable extends Migration {
             $table->engine = 'InnoDB';
             $table->smallIncrements('nv_ma')->comment('Mã nhân viên, 1-chưa phân công');
             $table->string('nv_taiKhoan', 50)->comment('Tài khoản # Tài khoản');
-            $table->string('nv_matKhau', 32)->comment('Mật khẩu # Mật khẩu');
+            $table->string('nv_matKhau', 256)->comment('Mật khẩu # Mật khẩu');
             $table->string('nv_hoTen', 100)->comment('Họ tên # Họ tên');
             $table->unsignedTinyInteger('nv_gioiTinh')->default('1')->comment('Giới tính # Giới tính: 0-Nữ, 1-Nam, 2-Khác');
             $table->string('nv_email', 100)->comment('Email # Email');

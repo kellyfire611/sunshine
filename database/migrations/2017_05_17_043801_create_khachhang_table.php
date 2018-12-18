@@ -14,7 +14,7 @@ class CreateKhachhangTable extends Migration {
             $table->engine = 'InnoDB';
             $table->bigIncrements('kh_ma')->comment('Mã khách hàng');
             $table->string('kh_taiKhoan', 50)->comment('Tài khoản # Tài khoản');
-            $table->string('kh_matKhau', 32)->comment('Mật khẩu # Mật khẩu');
+            $table->string('kh_matKhau', 256)->comment('Mật khẩu # Mật khẩu');
             $table->string('kh_hoTen', 100)->comment('Họ tên # Họ tên');
             $table->unsignedTinyInteger('kh_gioiTinh')->default('1')->comment('Giới tính # Giới tính: 0-Nữ, 1-Nam, 2-Khác');
             $table->string('kh_email', 100)->comment('Email # Email');

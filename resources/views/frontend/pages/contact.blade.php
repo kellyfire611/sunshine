@@ -61,7 +61,7 @@ Liên hệ Shop Hoa tươi - Sunshine
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Email của bạn"
 								ng-model="email" ng-pattern="/^.+@gmail\.com$/"
 								ng-required=true>
-							<span class="valid" ng-show="userInfo.email.$valid">Hợp lệ</span>
+							<span class="valid" ng-show="contactForm.email.$valid">Hợp lệ</span>
 							<img class="how-pos4 pointer-none" src="{{ asset('theme/cozastore/images/icons/icon-email.png') }}" alt="ICON">
 						</div>
 
