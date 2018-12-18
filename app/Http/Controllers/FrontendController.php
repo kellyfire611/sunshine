@@ -171,6 +171,9 @@ class FrontendController extends Controller
             ->with('danhsachphuongthucthanhtoan', $danhsachphuongthucthanhtoan);
     }
 
+    /**
+     * Action Đặt hàng
+     */
     public function order(Request $request)
     {
         // dd($request);
@@ -235,8 +238,17 @@ class FrontendController extends Controller
 
         return response()->json(array(
             'code'  => 200,
-            'message' => 'Tạo đơn hàng thành công!'
+            'message' => 'Tạo đơn hàng thành công!',
+            'redirectUrl' => route('frontend.orderFinish')
         ));
+    }
+
+    /**
+     * Action Hoàn tất Đặt hàng
+     */
+    public function orderFinish()
+    {
+        return view('frontend.pages.order-finish');
     }
 }
 

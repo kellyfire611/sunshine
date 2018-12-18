@@ -86,7 +86,7 @@ class KhachhangTableSeeder extends Seeder {
             $birthdate= $uPI->Birthdate($birthYear);
             $email    = $uPI->Email   ($name, $birthdate, "", "?", "", VnBase::VnMixed, VnBase::VnMixed, VnBase::VnTrue);
             $username = $uPI->Username($name, $birthdate,     "?", "", VnBase::VnMixed, VnBase::VnMixed, VnBase::VnTrue);
-            $password = md5($uFN->Shorthand($name, VnBase::VnLowerCase, VnBase::VnTrim2First, "", VnBase::VnTrue)."@".$birthYear);
+            $password = bcrypt('123456');
             $phone    = $uPI->Mobile("", VnBase::VnFalse);
             $address  = $uPI->Address();
 

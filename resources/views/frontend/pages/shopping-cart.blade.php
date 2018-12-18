@@ -47,6 +47,14 @@ Giỏ hàng Shop Hoa tươi - Sunshine
 
                         <!-- Thông báo lỗi kh_ngaySinh -->
                         <li><span class="error" ng-show="orderForm.kh_ngaySinh.$error.required">Vui lòng nhập Ngày sinh</span></li>
+
+                        <!-- Thông báo lỗi kh_diaChi -->
+                        <li><span class="error" ng-show="orderForm.kh_diaChi.$error.minlength">Địa chỉ phải > 6 ký tự</span></li>
+                        <li><span class="error" ng-show="orderForm.kh_diaChi.$error.maxlength">Địa chỉ phải <= 250 ký tự</span></li>
+
+                        <!-- Thông báo lỗi kh_dienThoai -->
+                        <li><span class="error" ng-show="orderForm.kh_dienThoai.$error.minlength">Điện thoại phải > 6 ký tự</span></li>
+                        <li><span class="error" ng-show="orderForm.kh_dienThoai.$error.maxlength">Điện thoại phải <= 11 ký tự</span></li>
                     </li>
                 </div>
                 <div class="form-group">
@@ -75,11 +83,11 @@ Giỏ hàng Shop Hoa tươi - Sunshine
                 </div>
                 <div class="form-group">
                     <label for="kh_diaChi">Địa chỉ:</label>
-                    <input type="text" class="form-control" id="kh_diaChi" name="kh_diaChi" ng-model="kh_diaChi">
+                    <input type="text" class="form-control" id="kh_diaChi" name="kh_diaChi" ng-model="kh_diaChi" ng-minlength="6" ng-maxlength="250">
                 </div>
                 <div class="form-group">
                     <label for="kh_dienThoai">Điện thoại:</label>
-                    <input type="text" class="form-control" id="kh_dienThoai" name="kh_dienThoai" ng-model="kh_dienThoai">
+                    <input type="text" class="form-control" id="kh_dienThoai" name="kh_dienThoai" ng-model="kh_dienThoai" ng-minlength="6" ng-maxlength="11">
                 </div>
             </div>
 

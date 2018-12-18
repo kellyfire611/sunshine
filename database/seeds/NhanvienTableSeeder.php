@@ -29,7 +29,7 @@ class NhanvienTableSeeder extends Seeder {
         array_push($list, [
             'nv_ma'        => 1,
             'nv_taiKhoan'  => "unknown",
-            'nv_matKhau'   => md5(VnBase::RandomString(10)),
+            'nv_matKhau'   => bcrypt('123456'),
             'nv_hoTen'     => "Chưa phân công",
             'nv_gioiTinh'  => true,
             'nv_email'     => "unknown@sunshine.com",
