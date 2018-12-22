@@ -34,17 +34,17 @@ Route::get('/danhsachloai', function() {
 */
 
 // Admin routes
-// $router->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function($router)
-// {
-//     $router->resource('user', 'UserController');
-// });
+$router->group(['middleware' => ['auth'], 'prefix' => 'admin'], function($router)
+{
+    // route Loai
+    $router->get('/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
+    $router->get('/danhsachloai/{id}', 'LoaiController@edit')->name('danhsachloai.edit');
+    $router->put('/danhsachloai/{id}', 'LoaiController@update')->name('danhsachloai.update');
+    $router->delete('/danhsachloai/{id}', 'LoaiController@destroy')->name('danhsachloai.destroy');
+});
 
 // tencontroller@action
-// route Loai
-Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
-Route::get('/admin/danhsachloai/{id}', 'LoaiController@edit')->name('danhsachloai.edit');
-Route::put('/admin/danhsachloai/{id}', 'LoaiController@update')->name('danhsachloai.update');
-Route::delete('/admin/danhsachloai/{id}', 'LoaiController@destroy')->name('danhsachloai.destroy');
+
 
 // route Danh mục Sản phẩm
 Route::get('/admin/danhsachsanpham/excel', 'SanPhamController@excel')->name('danhsachsanpham.excel');
@@ -62,3 +62,7 @@ Route::get('/san-pham/{id}', 'FrontendController@productDetail')->name('frontend
 Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');
 Route::post('/dat-hang', 'FrontendController@order')->name('frontend.order');
 Route::get('/dat-hang/hoan-tat', 'FrontendController@orderFinish')->name('frontend.orderFinish');
+
+// Tạo route Báo cáo Đơn hàng
+Route::get('/admin/baocao/donhang', 'BaoCaoController@donhang')->name('baocao.donhang');
+Route::get('/admin/baocao/donhang/data', 'BaoCaoController@donhangData')->name('baocao.donhang.data'); 
