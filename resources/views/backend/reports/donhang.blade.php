@@ -40,6 +40,7 @@ Báo cáo Đơn hàng
 <script>
     $(document).ready(function () {
         var objChart;
+        // HTML5 canvas
         var $chartOfobjChart = document.getElementById("chartOfobjChart").getContext("2d");
 
         $("#btnLapBaoCao").click(function(e) { 

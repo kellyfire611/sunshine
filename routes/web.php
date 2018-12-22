@@ -10,7 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('setLocale/{locale}', function ($locale) {
+    if (in_array($locale, \Config::get('app.locales'))) {
+      Session::put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('app.setLocale');
 
 Route::resource('test', 'TestController');
 Route::get('/testa/carbon', function() {
