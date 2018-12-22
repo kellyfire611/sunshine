@@ -25,12 +25,13 @@ class BaoCaoController extends Controller
             'tuNgay' => $request->tuNgay,
             'denNgay' => $request->denNgay
         ];
+        // Raw SQL
         $data = DB::select('
             SELECT dh.dh_thoiGianDatHang as thoiGian
                 , SUM(ctdh.ctdh_soLuong * ctdh.ctdh_donGia) as tongThanhTien
             FROM cusc_donhang dh
             JOIN cusc_chitietdonhang ctdh ON dh.dh_ma = ctdh.dh_ma
-            -- WHERE dh.dh_thoiGianDatHang BETWEEN :tuNgay AND :denNgay
+            WHERE dh.dh_thoiGianDatHang BETWEEN :tuNgay AND :denNgay
             GROUP BY dh.dh_thoiGianDatHang
         ', $parameter);
 
