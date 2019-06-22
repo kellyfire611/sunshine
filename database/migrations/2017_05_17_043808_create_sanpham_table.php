@@ -25,7 +25,10 @@ class CreateSanphamTable extends Migration {
             $table->unsignedTinyInteger('l_ma')->comment('Loại sản phẩm # l_ma # l_ten # Mã loại sản phẩm');
             
             $table->unique(['sp_ten']);
-            $table->foreign('l_ma')->references('l_ma')->on('cusc_loai')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('l_ma') //cột khóa ngoại là cột `l_ma` trong table `sanpham`
+                ->references('l_ma')->on('cusc_loai') //cột sẽ tham chiếu đến là cột `l_ma` trong table `loai`
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
         });
         DB::statement("ALTER TABLE `cusc_sanpham` comment 'Sản phẩm # Sản phẩm: hoa, giỏ hoa, vòng hoa, ...'");
     }
